@@ -1,2 +1,4 @@
 rootProject.name = "TMobile"
 include ':app'
+include ':data'
+include ':domain'
