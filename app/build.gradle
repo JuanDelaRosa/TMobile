@@ -5,15 +5,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+
+    compileSdkVersion rootProject.ext.compile_sdk_version
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.juandelarosa.tmobile"
-        minSdkVersion 22
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
+        versionCode rootProject.ext.version_code
+        versionName rootProject.ext.version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +23,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all {
+                variant ->
+                    variant.outputs.all {
+                        def appName = "TMobile"
+                        outputFileName = appName + "-${variant.versionName}.apk"
+                    }
+            }
         }
     }
     compileOptions {
