@@ -1,10 +1,10 @@
 package com.juandelarosa.tmobile.ui
 
 import androidx.lifecycle.*
+import com.juandelarosa.domain.common.Result
 import com.juandelarosa.domain.entities.Cards
 import com.juandelarosa.tmobile.app.TMobileApp
 import kotlinx.coroutines.launch
-import com.juandelarosa.domain.common.Result
 
 class MainActivityViewModel(private val app: TMobileApp) : ViewModel() {
 

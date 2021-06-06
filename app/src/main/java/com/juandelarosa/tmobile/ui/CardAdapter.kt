@@ -1,19 +1,16 @@
 package com.juandelarosa.tmobile.ui
 
-import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.juandelarosa.domain.entities.*
 import com.juandelarosa.tmobile.app.LayoutUtils
-import com.juandelarosa.tmobile.databinding.ActivityMainBinding
 import com.juandelarosa.tmobile.databinding.ImageCardItemBinding
 import com.juandelarosa.tmobile.databinding.TextCardItemBinding
 import com.juandelarosa.tmobile.databinding.TextDescriptionCardItemBinding
 
 
-class CardAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CardAdapter(val click: (ImageCard)-> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var cards: ArrayList<Cards> = arrayListOf()
     fun setData(list: List<Cards>){
@@ -74,7 +71,7 @@ class CardAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 LayoutUtils.textWithStyle(imageHolder.binding.description, cardImage.description)
                 LayoutUtils.setImage(imageHolder.binding.image,cardImage.image.url)
                 imageHolder.binding.root.setOnClickListener {
-
+                    click(cardImage)
                 }
             }
         }

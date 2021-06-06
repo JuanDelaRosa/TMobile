@@ -9,7 +9,6 @@ import com.juandelarosa.data.repositories.TMobileLocalDataSourceImpl
 import com.juandelarosa.data.repositories.TMobileRemoteDataSourceImpl
 import com.juandelarosa.data.repositories.TMobileRepositoryImpl
 import com.juandelarosa.domain.repositories.TMobileRepository
-import kotlinx.coroutines.Dispatchers
 
 object ServiceLocator {
     private val networkModule by lazy {

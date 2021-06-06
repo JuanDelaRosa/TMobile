@@ -1,10 +1,9 @@
 package com.juandelarosa.tmobile.ui
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.juandelarosa.tmobile.app.LayoutUtils
 import com.juandelarosa.tmobile.app.TMobileApp
 import com.juandelarosa.tmobile.databinding.ActivityMainBinding
@@ -22,7 +21,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initUI() {
         binding.feeds.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        binding.feeds.adapter = CardAdapter()
+        binding.feeds.adapter = CardAdapter {
+            val intent = Intent(this, InfoActivity::class.java)
+            intent.putExtra("url", it.image.url)
+            intent.putExtra("title", it.title.text)
+            startActivity(intent)
+        }
         vm.getHomeFeeds()
         vm.homeFeeds.observe(this, {cards ->
             cards?.let {

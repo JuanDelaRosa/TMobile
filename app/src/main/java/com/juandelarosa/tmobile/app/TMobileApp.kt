@@ -1,7 +1,6 @@
 package com.juandelarosa.tmobile.app
 
 import android.app.Application
-import android.content.Context
 import com.juandelarosa.domain.repositories.TMobileRepository
 import com.juandelarosa.domain.usercases.GetHomeFeedsUserCase
 import com.juandelarosa.domain.usercases.LoadBackupUserCase

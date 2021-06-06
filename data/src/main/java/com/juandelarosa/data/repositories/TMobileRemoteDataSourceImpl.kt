@@ -7,7 +7,6 @@ import com.juandelarosa.domain.common.Result
 import com.juandelarosa.domain.entities.Cards
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class TMobileRemoteDataSourceImpl (private val service: TMobileService, private val mapper: TMobileMapper) : TMobileRemoteDataSource {
     override suspend fun getHomeFeeds(): Result<List<Cards>> =
