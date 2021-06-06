@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.juandelarosa.tmobile.databinding.ActivityInfoBinding
 
+//This activity could be used to show the information related to the cards.
+// Only the cards with images show the legend "Tap to see" so it is only available for this type of cards.
 class InfoActivity : AppCompatActivity() {
     private val binding: ActivityInfoBinding by lazy { ActivityInfoBinding.inflate(layoutInflater) }
     private val vm = InfoActivityViewModel()

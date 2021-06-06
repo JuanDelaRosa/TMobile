@@ -5,6 +5,7 @@ import com.juandelarosa.domain.entities.Cards
 import com.juandelarosa.domain.entities.CardsDB
 import com.juandelarosa.domain.repositories.TMobileRepository
 
+//Main repository, dedicated to communicating with the other repositories.
 class TMobileRepositoryImpl(
     private val remoteDataSource: TMobileRemoteDataSource,
     private val localDataSource: TMobileLocalDataSource

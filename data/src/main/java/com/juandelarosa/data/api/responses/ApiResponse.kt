@@ -1,5 +1,6 @@
 package com.juandelarosa.data.api.responses
 
+//Set of classes required to deserialize the service response
 data class ApiResponse(
     val page: Page?
 )

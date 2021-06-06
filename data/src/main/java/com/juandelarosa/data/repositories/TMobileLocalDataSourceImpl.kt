@@ -8,6 +8,7 @@ import com.juandelarosa.domain.entities.CardsDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+//Repository dedicated to interacting with the database
 class TMobileLocalDataSourceImpl(
     private val dao: DAO,
     private val mapper : TMobileDBMapper

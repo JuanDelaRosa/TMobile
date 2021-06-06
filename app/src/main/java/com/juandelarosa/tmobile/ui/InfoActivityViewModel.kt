@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class InfoActivityViewModel  : ViewModel() {
+
+    ///If the API provides a service to get the promotion information, it could be consumed here.
     fun prepateUI(url: String, title: String) {
         _url.postValue(url)
         _title.postValue(title)

@@ -1,11 +1,17 @@
 package com.juandelarosa.data.mappers
 
+import com.google.gson.Gson
 import com.juandelarosa.data.api.responses.ApiResponse
 import com.juandelarosa.data.api.responses.CardApi
 import com.juandelarosa.data.api.responses.StyleApi
 import com.juandelarosa.domain.entities.*
 
+//Class dedicated to mapping the response of the server in clean information, free of nulls and ready to use
 class TMobileMapper {
+
+    fun testToFeeds(string : String) :ApiResponse =
+        Gson().fromJson(string, ApiResponse::class.java)
+
 
     fun toFeeds(response: ApiResponse?) : List<Cards> = response?.let { apiR ->
             apiR.page?.let {

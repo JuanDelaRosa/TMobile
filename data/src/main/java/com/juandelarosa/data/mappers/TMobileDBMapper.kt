@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.juandelarosa.data.db.entities.LocalBackup
 import com.juandelarosa.domain.entities.*
 
+
+//Class dedicated to mapping the informacion of the Data Base in clean information, free of nulls and ready to use
 class TMobileDBMapper {
 
     fun toBackup(backup : CardsDB) : LocalBackup =
@@ -74,6 +76,7 @@ class TMobileDBMapper {
     }
 
 
+    //It is not possible to deserialize an interface (Card) so I created this helper class to be able to perform this process
     private data class CardsHelper(
         var id : Int = 0,
         var cards : List<CardFromDB>

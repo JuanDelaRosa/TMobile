@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+//Class dedicated to communicating with the service. GSON is configured to deserialize the response
 class NetworkModule {
     private val loggingInterceptor by lazy {
         val loggingInterceptor = HttpLoggingInterceptor()

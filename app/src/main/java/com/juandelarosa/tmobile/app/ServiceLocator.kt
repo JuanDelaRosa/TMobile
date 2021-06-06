@@ -10,6 +10,7 @@ import com.juandelarosa.data.repositories.TMobileRemoteDataSourceImpl
 import com.juandelarosa.data.repositories.TMobileRepositoryImpl
 import com.juandelarosa.domain.repositories.TMobileRepository
 
+//Object dedicated to building the service repository (API and DB)
 object ServiceLocator {
     private val networkModule by lazy {
         NetworkModule()

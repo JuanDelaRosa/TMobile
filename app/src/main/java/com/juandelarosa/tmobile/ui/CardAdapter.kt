@@ -9,7 +9,7 @@ import com.juandelarosa.tmobile.databinding.ImageCardItemBinding
 import com.juandelarosa.tmobile.databinding.TextCardItemBinding
 import com.juandelarosa.tmobile.databinding.TextDescriptionCardItemBinding
 
-
+//Allows you to load the cards in the recyclerview, differentiating between text, image or description cards
 class CardAdapter(val click: (ImageCard)-> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var cards: ArrayList<Cards> = arrayListOf()
