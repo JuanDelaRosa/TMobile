@@ -33,22 +33,22 @@ class TMobileDBMapper {
     private fun parseCardFromDB(card : CardFromDB) : Cards{
         return when(card.type){
             CardType.Image -> {
-                val title = card.title ?: TextStyle(0,"","")
-                val description = card.description ?: TextStyle(0,"","")
+                val title = card.title ?: TextStyle(0f,"","")
+                val description = card.description ?: TextStyle(0f,"","")
                 val image = card.image ?: Image(0,0,"")
                 Cards(ImageCard(title,image, description),card.type)
             }
             CardType.TitleDescription -> {
-                val title = card.title ?: TextStyle(0,"","")
-                val description = card.description ?: TextStyle(0,"","")
+                val title = card.title ?: TextStyle(0f,"","")
+                val description = card.description ?: TextStyle(0f,"","")
                 Cards(TitleDescriptionCard(title,description),card.type)
             }
             CardType.Text -> {
-                val title = card.title ?: TextStyle(0,"","")
+                val title = card.title ?: TextStyle(0f,"","")
                 Cards(TextCard(title),card.type)
             }
             CardType.Unknown -> {
-                Cards(TextCard(TextStyle(0,"","")),card.type)
+                Cards(TextCard(TextStyle(0f,"","")),card.type)
             }
         }
     }
@@ -72,4 +72,17 @@ class TMobileDBMapper {
             }
         }
     }
+
+
+    private data class CardsHelper(
+        var id : Int = 0,
+        var cards : List<CardFromDB>
+    )
+
+    private data class CardFromDB(
+        val title: TextStyle?,
+        val description: TextStyle?,
+        val image: Image?,
+        val type: CardType
+    )
 }

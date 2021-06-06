@@ -1,5 +1,6 @@
 package com.juandelarosa.data.repositories
 
+import com.juandelarosa.data.Exceptions
 import com.juandelarosa.data.api.TMobileService
 import com.juandelarosa.data.mappers.TMobileMapper
 import com.juandelarosa.domain.common.Result
@@ -13,12 +14,13 @@ class TMobileRemoteDataSourceImpl (private val service: TMobileService, private 
         withContext(Dispatchers.IO){
             try{
                 val response = service.HomePageFeeds()
-                if(response.isSuccessful)
+                if(response.isSuccessful){
                     return@withContext Result.Success(mapper.toFeeds(response.body()))
+                }
                 else
-                    return@withContext Result.Error(Exception(response.message()))
+                    return@withContext Result.Error(Exception(Exceptions.NoInternet))
             }catch (e:Exception){
-                return@withContext Result.Error(e)
+                return@withContext Result.Error(Exception(Exceptions.NoInternet))
             }
         }
 }

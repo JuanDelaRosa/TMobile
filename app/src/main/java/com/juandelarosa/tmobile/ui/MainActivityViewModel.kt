@@ -8,9 +8,6 @@ import com.juandelarosa.domain.common.Result
 
 class MainActivityViewModel(private val app: TMobileApp) : ViewModel() {
 
-    private val _dataLoading = MutableLiveData(true)
-    val dataLoading: LiveData<Boolean> = _dataLoading
-
     private val _homeFeeds = MutableLiveData<List<Cards>>()
     val homeFeeds = _homeFeeds
 
@@ -22,14 +19,13 @@ class MainActivityViewModel(private val app: TMobileApp) : ViewModel() {
 
     fun getHomeFeeds(){
         viewModelScope.launch {
-            _dataLoading.postValue(true)
             when(val result = app.getHomeFeeds.invoke()){
                 is Result.Success ->{
                     _homeFeeds.postValue(result.data)
-                    _dataLoading.postValue(false)
                     _isNotInternet.value = false
                 }
                 is Result.Error ->{
+                    _error.postValue(result.exception.message)
                     _isNotInternet.value = true
                 }
             }
@@ -46,7 +42,6 @@ class MainActivityViewModel(private val app: TMobileApp) : ViewModel() {
             when(val result = app.loadBackup.invoke()){
                 is Result.Success ->{
                     _homeFeeds.postValue(result.data.cards)
-                    _dataLoading.postValue(false)
                 }
                 is Result.Error ->{
                     _error.postValue(result.exception.message)

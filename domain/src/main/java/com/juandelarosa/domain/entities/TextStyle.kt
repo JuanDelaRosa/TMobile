@@ -1,7 +1,7 @@
 package com.juandelarosa.domain.entities
 
 data class TextStyle(
-    val Size: Int,
+    val size: Float,
     val color: String,
     val value: String
 )

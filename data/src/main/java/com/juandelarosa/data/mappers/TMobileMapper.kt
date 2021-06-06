@@ -31,15 +31,15 @@ class TMobileMapper {
                 getTitleDescriptionCard(card)
             }
             CardType.Unknown -> {
-                TextCard(TextStyle(0,"",""))
+                TextCard(TextStyle(0f,"",""))
             }
         }
         return Cards(tmpCard,enumCard)
     }
 
     private fun getImageCard(card : CardApi?) : ImageCard{
-        val title = card?.let { CreateTextStyle(it.title ) } ?: TextStyle(0,"","")
-        val description = card?.let { CreateTextStyle(it.description ) } ?: TextStyle(0,"","")
+        val title = card?.let { CreateTextStyle(it.title ) } ?: TextStyle(0f,"","")
+        val description = card?.let { CreateTextStyle(it.description ) } ?: TextStyle(0f,"","")
         val image = card?.let {
             c -> c.image?.let {
                 i -> i.size?.let {
@@ -52,19 +52,21 @@ class TMobileMapper {
     }
 
     private fun getTitleDescriptionCard(card : CardApi?) : TitleDescriptionCard{
-        val title = card?.let { CreateTextStyle(it.title ) } ?: TextStyle(0,"","")
-        val description = card?.let { CreateTextStyle(it.description ) } ?: TextStyle(0,"","")
+        val title = card?.let { CreateTextStyle(it.title ) } ?: TextStyle(0f,"","")
+        val description = card?.let { CreateTextStyle(it.description ) } ?: TextStyle(0f,"","")
         return TitleDescriptionCard(title, description)
     }
 
     private fun getTextCard(card : CardApi?) : TextCard{
-        val title = card?.let { CreateTextStyle(it.title ) } ?: TextStyle(0,"","")
-        return TextCard(title)
+        val size = card?.let { it.attributes?.let { a -> a.font?.size } } ?: 0f
+        val color = card?.let { it.attributes?.text_color } ?: ""
+        val value = card?.value ?: ""
+        return TextCard(TextStyle(size,color,value))
     }
 
     private fun CreateTextStyle(styleApi: StyleApi?) :TextStyle? =
         styleApi?.let { t -> t.attributes?.let {
-                a -> TextStyle(a.font?.size ?: 0, a.text_color ?: "", styleApi.value ?: "")
+                a -> TextStyle(a.font?.size ?: 0f, a.text_color ?: "", styleApi.value ?: "")
             }
         }
 

@@ -1,10 +1,14 @@
 package com.juandelarosa.tmobile.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.juandelarosa.tmobile.app.LayoutUtils
 import com.juandelarosa.tmobile.app.TMobileApp
 import com.juandelarosa.tmobile.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -17,10 +21,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        binding.feeds.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        binding.feeds.adapter = CardAdapter()
         vm.getHomeFeeds()
-
         vm.homeFeeds.observe(this, {cards ->
             cards?.let {
+                LayoutUtils.removeSplashScreen(binding.logo)
+                (binding.feeds.adapter as CardAdapter).setData(it)
                 vm.saveBackup(cards)
             }
         })
@@ -32,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         vm.error.observe(this, {
-            Toast.makeText(this, "Error: $it", Toast.LENGTH_SHORT).show()
+            LayoutUtils.showSnack(binding.root, it)
         })
     }
 }

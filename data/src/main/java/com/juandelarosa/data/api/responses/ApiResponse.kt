@@ -36,7 +36,7 @@ data class StyleApi(
 )
 
 data class FontApi(
-    val size: Int?
+    val size: Float?
 )
 data class SizeApi(
     val height: Int?,

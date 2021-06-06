@@ -1,5 +1,6 @@
 package com.juandelarosa.data.repositories
 
+import com.juandelarosa.data.Exceptions
 import com.juandelarosa.data.db.DAO
 import com.juandelarosa.data.mappers.TMobileDBMapper
 import com.juandelarosa.domain.entities.CardsDB
@@ -23,7 +24,7 @@ class TMobileLocalDataSourceImpl(
         withContext(Dispatchers.IO){
             val backup = dao.getBackup()
             if(backup==null)
-                return@withContext Result.Error(Exception("No exist a backup"))
+                return@withContext Result.Error(Exception(Exceptions.NoBackup))
             else
                 return@withContext Result.Success(mapper.fromBackup(backup))
         }
